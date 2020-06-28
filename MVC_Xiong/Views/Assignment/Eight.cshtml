@@ -1,0 +1,19 @@
+﻿@model List<MVC_Xiong.Models.Student>
+
+@{
+    ViewData["Title"] = "Hello Admin";
+}
+
+<h1></h1>
+
+<div>
+    <h4>Student Grades</h4>
+    <hr />
+    @foreach (var student in Model)
+    {
+        Html.RenderPartial("~/Views/Shared/_StudentPartialView.cshtml", student);
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to Student Home</a>
+</div>

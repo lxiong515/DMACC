@@ -63,7 +63,7 @@ namespace MVC_Xiong.Controllers
         [HttpPost]
         public RedirectToActionResult Details(FlagViewModel model)
         {
-           // Flag.Country(model.Flags.Count); need to fix
+            Flag.Country(model.Flags.Count); //need to fix
             TempData["ActiveOly"] = model.ActiveOly;
             TempData["ActiveCat"] = model.ActiveCat;
             return RedirectToAction("Details", new { ID = model.Flags});
@@ -72,10 +72,10 @@ namespace MVC_Xiong.Controllers
         public ViewResult Details(string id)
         {
         var model = new FlagViewModel {
-            //Flags = context.Country
-                //.Include(t=> t.Olympic) need to fix
-               // .Include(t=> t.Category)
-               // .FirstOrDefault(t=> t.FlagID == id),
+            Flags = context.Country
+                .Include(t=> t.Olympic) //need to fix
+                .Include(t=> t.Category)
+                .FirstOrDefault(t=> t.FlagID == id),
             ActiveOly = TempData.Peek("ActiveConf").ToString(),
             ActiveCat = TempData.Peek("ActiveDiv").ToString()
         };

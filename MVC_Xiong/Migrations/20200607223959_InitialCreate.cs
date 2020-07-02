@@ -13,9 +13,9 @@ namespace MVC_Xiong.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
-                    Genre = table.Column<string>(nullable: true),
+                    Genre = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>

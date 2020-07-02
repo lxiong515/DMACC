@@ -11,17 +11,16 @@ namespace MVC_Xiong.Data
 {
     public class ContactsContext : DbContext
     {
-        public DbSet<Contacts> Contact { get; set; }
-        /**
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=tcp:lxiong.database.windows.net,1433;Initial Catalog=dmacc;Persist Security Info=False;User ID=lxiong;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30");
-        }
-        **/
-        public ContactsContext (DbContextOptions<MvcMovieContext> options)
+        
+        public ContactsContext (DbContextOptions<ContactsContext> options)
             : base(options)
         {
         }
-        
+        public DbSet<Contacts> Contact { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=tcp:cis174summer.database.windows.net,1433;Initial Catalog=WebApplication1_db;Persist Security Info=False;User ID=lxiong;Password=Summer50317;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        }
     }
 }

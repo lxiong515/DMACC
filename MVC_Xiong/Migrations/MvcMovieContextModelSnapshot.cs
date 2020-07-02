@@ -27,20 +27,48 @@ namespace MVC_Xiong.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Movie");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 6,
+                            Genre = "Classic",
+                            Price = 5m,
+                            ReleaseDate = new DateTime(1942, 8, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Casablanca"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Genre = "Action",
+                            Price = 9m,
+                            ReleaseDate = new DateTime(2017, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Wonder Woman"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Genre = "Action",
+                            Price = 12m,
+                            ReleaseDate = new DateTime(2019, 8, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "John Wick"
+                        });
                 });
 #pragma warning restore 612, 618
         }

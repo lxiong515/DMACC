@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MVC_Xiong.Data;
 using MVC_Xiong.Models;
 
+
 namespace MVC_Xiong.Controllers
 {
     public class MoviesController : Controller
@@ -20,8 +21,11 @@ namespace MVC_Xiong.Controllers
         }
 
         // GET: Movies
+        // public IActionResult Index()
+        // public async Task<IActionResult> Index()
         public async Task<IActionResult> Index()
         {
+            //return View();
             return View(await _context.Movie.ToListAsync());
         }
 
@@ -47,6 +51,7 @@ namespace MVC_Xiong.Controllers
         public IActionResult Create()
         {
             return View();
+            //return Content("Movie controller, Index action");
         }
 
         // POST: Movies/Create

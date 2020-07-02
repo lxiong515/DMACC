@@ -21,6 +21,7 @@ namespace MVC_Xiong.Controllers
         public IActionResult Index()
         {
             return View();
+            //return Content("Home controller, Index action");
         }
 
         public IActionResult Privacy()

@@ -1,48 +1,129 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Movie App</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+            .navbar a {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                cursor: pointer;
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: white;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+                background-color: pink;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: gray;
+                }
+
+        .show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+    <div class="navbar">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="myFunction()">
+                Assignments
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a class="nav-link text-dark" asp-area="" asp-controller="HelloWorld" asp-action="Index">Hello World</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Index">Movie App</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Contacts1" asp-action="Index">Contact App</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Assignment" asp-action="Index">Assignment 6.1</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Olympic" asp-action="Index">Olympics</a>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Movie App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    <h3>CIS 174</h3>
+    <p>Advanced C# Programming</p>
+
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2020 - CIS174 Luke Xiong - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@RenderSection("Scripts", required: false)
 </body>
 </html>

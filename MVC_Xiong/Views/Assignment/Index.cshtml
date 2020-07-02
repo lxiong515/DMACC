@@ -1,0 +1,27 @@
+﻿@model MVC_Xiong.Models.Student
+
+@{
+    ViewData["Title"] = "Student";
+    
+}
+
+<h1>Student Grades</h1>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Enter a number between 1 and 10</h1>
+    <form asp-action="Index" method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="Number">Number:@Model.Number</label>
+            <input asp-for="Number" />
+        </div>
+
+        <button type="submit">Submit</button>
+        <button type="reset" onclick="this.form.reset();return false">Clear</button>
+    </form>
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿@model FlagViewModel
+﻿@model Countries
 @{ 
     ViewData["Title"] = "Team Details";
 }
@@ -9,15 +9,15 @@
         <ul class="list-group text-center">
             <li class="list-group-item">
                 <img src="~/lib/flag.png" alt=""/>
-                <h3>@Model.Flags</h3>
+                <h3>@Model.Country</h3>
             </li>
             <li class="list-group-item">
-                <h4>Category: @Model.Flags</h4>
+                <h4>Category: @Model.Sport.Sport</h4>
             </li>
             <li class="list-group-item">
                 <a asp-action="Index"
-                   asp-route-olympic="@Model.ActiveOly"
-                   asp-route-category="@Model.ActiveCat">
+                   asp-route-olympic="@TempData["ActiveOly"]"
+                   asp-route-category="@TempData["ActiveCat"]">
                     Return to Olympic Home Page
                 </a>
             </li>

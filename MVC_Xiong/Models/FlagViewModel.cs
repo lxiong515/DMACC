@@ -10,30 +10,30 @@ namespace MVC_Xiong.Models
 {
     public class FlagViewModel
     {
-        public List<Flag> Flags { get; set; }
+        public List<Countries> Flags { get; set; }
         public string ActiveOly { get; set; }
         public string ActiveCat { get; set; }
 
         //make next two properties standard properties so the setter can make 
         //the first item in each list "all"
-        private List<Olympic> games;
-        public List<Olympic> Games
+        private List<Games> games;
+        public List<Games> Games
         {
             get => games;
             set
             {
                 games = value;
-                games.Insert(0, new Olympic { Game = "all" });
+                games.Insert(0, new Games { Game = "all" });
             }
         }
-        private List<Category> sport;
-        public List<Category> Sport
+        private List<Sports> sport;
+        public List<Sports> Sport
         {
             get => sport;
             set
             {
                 sport = value;
-                sport.Insert(0, new Category { Sport = "all" });
+                sport.Insert(0, new Sports { Sport = "all" });
             }
         }
         //methods to help view determine active link

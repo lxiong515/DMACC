@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Http
+@model FlagViewModel
+
+@{ 
+     //int num = Context.Session.GetInt32("num"); - getting error
+     //var team = Context.Session.GetObject<Flag>("flag");
+    // page 331 examples for extension methods for single or list
+}
+
+<div>@Context.Session.GetInt32("num")</div>

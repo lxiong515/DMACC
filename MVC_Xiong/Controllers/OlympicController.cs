@@ -17,34 +17,35 @@ namespace MVC_Xiong.Controllers
     public class OlympicController : Controller
     {
         
-        private FlagContext context;
+        private FlagsContext context;
         
-        public OlympicController(FlagContext ctx)
+        public OlympicController(FlagsContext ctx)
         {
             context = ctx;
         }
-        public ViewResult Index(string activeOly = "all", 
-            string activeCat = "all")
+        
+        public ViewResult Index(string activeOly = "All", 
+            string activeCat = "All")
         {
             var model = new FlagViewModel
             {
                 ActiveOly = activeOly,
                 ActiveCat = activeCat,
-                Games = context.Game.ToList(),
-                Sport = context.Sport.ToList()
+                Games = context.Games.ToList(),
+                Sport = context.Sports.ToList()
 
             };
              
-            //get countries - filter by Olympic and Category
+            //get countries - filter by Game and Sport
             //use FlagViewModel instead of flag?
-            IQueryable<Flag> query = context.Country;
+            IQueryable<Countries> query = context.Countries;
             if (activeOly != "all")
                 query = query.Where(
-                    t => t.Country.ToLower() ==
+                    t => t.Game.Game.ToLower() ==
                     activeOly.ToLower());
             if (activeCat != "all")
                 query = query.Where(
-                    t => t.Country.ToLower() ==
+                    t => t.Sport.Sport.ToLower() ==
                     activeCat.ToLower());
 
             // pass teams to view as model
@@ -52,6 +53,7 @@ namespace MVC_Xiong.Controllers
             return View(model);
             
         }
+        /*
         public ViewResult Index()
         {
             int num = (int)HttpContext.Session.GetInt32("num");
@@ -59,28 +61,44 @@ namespace MVC_Xiong.Controllers
             HttpContext.Session.SetInt32("num", num);
             return View();
         }
-        
+        */
         [HttpPost]
-        public RedirectToActionResult Details(FlagViewModel model)
+        public RedirectToActionResult Details([FromForm] Countries model)
         {
-            Flag.Country(model.Flags.Count); //need to fix
-            TempData["ActiveOly"] = model.ActiveOly;
-            TempData["ActiveCat"] = model.ActiveCat;
-            return RedirectToAction("Details", new { ID = model.Flags});
+            //Flag.Country(model.Flags.Count); //need to fix
+            //TempData["ActiveOly"] = ActiveOly;
+            //TempData["ActiveCat"] = ActiveCat;
+            return RedirectToAction("Details", new { id = model.Id});
         }
         [HttpGet]
-        public ViewResult Details(string id)
+        public ViewResult Details(int id)
         {
+            var model = context.Countries
+                .Include(t => t.Game)
+                .Include(t => t.Sport)
+                .FirstOrDefault(t => t.Id == id);
+            /*
         var model = new FlagViewModel {
-            Flags = context.Country
-                .Include(t=> t.Olympic) //need to fix
-                .Include(t=> t.Category)
-                .FirstOrDefault(t=> t.FlagID == id),
+            Flags = context.Countries
+                .Include(t=> t.Game) 
+                .Include(t=> t.Sport)
+                .FirstOrDefault(t=> t.Id == id),
             ActiveOly = TempData.Peek("ActiveConf").ToString(),
             ActiveCat = TempData.Peek("ActiveDiv").ToString()
-        };
-        return View(model);
+            
+        }; */
+            return View(model);
+
         }
+        /*
+        //page 339 Home controller
+        public ViewResult Index(string activeOly = "all", string activeCat = "all")
+        {
+            var session = new FlagSession(HttpContext.Session);
+            session.SetActiveOly(activeOly);
+            session.SetActiveCat(activeCat);
+        }
+        */
         
     }
 }

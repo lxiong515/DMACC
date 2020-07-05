@@ -55,10 +55,14 @@ namespace MVC_Xiong
 
             // olympic app - fixes
 
-            services.AddScoped<FlagContext, FlagContext>();
+            //services.AddScoped<FlagContext, FlagContext>();
+
+            services.AddDbContext<FlagsContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("FlagContext")));
+
 
             //services.AddMvc();
-            //services.AddDbContext<FlagContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
+            // services.AddDbContext<FlagContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

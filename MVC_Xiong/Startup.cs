@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Components;
 using MVC_Xiong.Models;
 using Microsoft.EntityFrameworkCore.Migrations;
 using MVC_Xiong.Controllers;
+using Newtonsoft.Json;
 
 namespace MVC_Xiong
 {
@@ -31,16 +32,19 @@ namespace MVC_Xiong
         {
             // must be called before AddControllerWithViews()
             services.AddMemoryCache();
+            services.AddSession();
+            //services.AddControllersWithViews();
+
+            // mvc services
+            services.AddControllersWithViews().AddNewtonsoftJson();
+
             services.AddSession(options =>
             {
                 //change idle time out to 5 minutes - default is 20 minutes
                 options.IdleTimeout = TimeSpan.FromSeconds(60 * 5);
                 options.Cookie.HttpOnly = false; //default is true
                 options.Cookie.IsEssential = true; //default is false
-            });
-
-            // mvc services
-            services.AddControllersWithViews().AddNewtonsoftJson(); 
+            });           
 
             // add other services here.
 
@@ -60,12 +64,16 @@ namespace MVC_Xiong
             services.AddDbContext<FlagsContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("FlagContext")));
 
+            services.AddDbContext<ToDoContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("TicketContext")));
+
 
             //services.AddMvc();
             // services.AddDbContext<FlagContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. 
+        //Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             /**
@@ -80,6 +88,7 @@ namespace MVC_Xiong
                 app.UseHsts();
             }
             **/
+            //page 325 calls method Configure(IAppBuilder app, IHostingEnvironment env){}
             //must be called before useEndPoints() for olympic web app
             app.UseSession();
 

@@ -27,6 +27,7 @@ namespace MVC_Xiong.Controllers
         public ViewResult Index(string activeOly = "All", 
             string activeCat = "All")
         {
+
             var model = new FlagViewModel
             {
                 ActiveOly = activeOly,
@@ -56,6 +57,8 @@ namespace MVC_Xiong.Controllers
         /*
         public ViewResult Index()
         {
+        //error that its null - need to fix
+
             int num = (int)HttpContext.Session.GetInt32("num");
             num += 1;
             HttpContext.Session.SetInt32("num", num);

@@ -23,7 +23,7 @@ namespace MVC_Xiong.Models
         public static void RouteUser()
         {
 
-            int Number = 0;
+            //int Number = 0;
 
             /*
             if (Number <= 2)

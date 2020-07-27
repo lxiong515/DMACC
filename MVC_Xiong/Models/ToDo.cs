@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MVC_Xiong.Data;
 using MVC_Xiong.Controllers;
 using MVC_Xiong.Models;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace MVC_Xiong.Models
 {
@@ -30,4 +31,5 @@ namespace MVC_Xiong.Models
         public bool Overdue =>
             Status?.ToLower() == "open" && DueDate < DateTime.Today;
     }
+
 }

@@ -28,15 +28,7 @@ namespace MVC_Xiong.Controllers
             string activeCat = "All")
         {
 
-            var model = new FlagViewModel
-            {
-                ActiveOly = activeOly,
-                ActiveCat = activeCat,
-                Games = context.Games.ToList(),
-                Sport = context.Sports.ToList()
 
-            };
-             
             //get countries - filter by Game and Sport
             //use FlagViewModel instead of flag?
             IQueryable<Countries> query = context.Countries;
@@ -49,6 +41,15 @@ namespace MVC_Xiong.Controllers
                     t => t.Sport.Sport.ToLower() ==
                     activeCat.ToLower());
 
+
+            var model = new FlagViewModel
+            {
+                ActiveOly = activeOly,
+                ActiveCat = activeCat,
+                Games = context.Games.ToList(),
+                Sport = context.Sports.ToList()
+
+            };
             // pass teams to view as model
             model.Flags = query.ToList();
             return View(model);

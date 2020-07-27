@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MVC_Xiong.Data;
 using MVC_Xiong.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace MVC_Xiong.Controllers
 {
